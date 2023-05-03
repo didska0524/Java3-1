@@ -7,7 +7,7 @@ public class LoginGrid extends JFrame {
     JLabel id,pass;
     JTextField idt, pst, mas;
 
-    JButton bt,bt2;
+    JButton ok, cancel, delete;
 
     public LoginGrid() {
         setTitle("로그인화면"); // 프레임의 타이틀 달기
@@ -30,11 +30,13 @@ public class LoginGrid extends JFrame {
         idt=new JTextField(14);
         pst=new JPasswordField(14);
 
-        bt= new JButton("확인");
-        bt2=new JButton("취소");
+        ok = new JButton("확인");
+        cancel =new JButton("취소");
+        delete =new JButton("삭제");
 
-        bt.addActionListener(new LoginListener());
-        bt2.addActionListener(new LoginListener());
+        ok.addActionListener(new LoginListener());
+        cancel.addActionListener(new LoginListener());
+        delete.addActionListener(new LoginListener());
         mas = new JTextField(14);
         mas.setEditable(false);
 
@@ -45,8 +47,9 @@ public class LoginGrid extends JFrame {
         contentPane.add(pass);
         contentPane.add(pst);
 
-        contentPane2.add(bt);//,BorderLayout.EAST);
-        contentPane2.add(bt2);//,BorderLayout.WEST);
+        contentPane2.add(ok);//,BorderLayout.EAST);
+        contentPane2.add(cancel);//,BorderLayout.WEST);
+        contentPane2.add(delete);
         //contentPane.add(jre);
 
         setSize(250,150); // 프레임 크기 300x150 설정
@@ -59,7 +62,7 @@ public class LoginGrid extends JFrame {
         @Override
         public void actionPerformed(ActionEvent e) {
             JButton bt = (JButton)e.getSource();
-            if(bt.getText().equals("확인")) {
+            if(e.getSource()==ok) {
                 if (idt.getText().equals("seoil") && pst.getText().equals("1234")) {
                     mas.setText("로그인성공!!");
                 }
@@ -67,9 +70,16 @@ public class LoginGrid extends JFrame {
                     mas.setText("로그인실패!!");
                 }
             }
-            else if(bt2.getText().equals("취소")){
+            else if(e.getSource()==cancel){
                 idt.setText("");
                 pst.setText("");
+                mas.setText("");
+            }
+            else if(e.getSource()==delete){
+                String name=JOptionPane.showInputDialog("삭제하고자 하는 ID를 입력하세요.");
+                if(name!=null){
+                    int result=JOptionPane.showConfirmDialog(null,name+"를 정말로 삭제합니까?", "확인",JOptionPane.YES_NO_OPTION);
+                }
             }
         }
     }
