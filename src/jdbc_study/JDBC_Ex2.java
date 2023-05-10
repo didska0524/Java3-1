@@ -8,7 +8,7 @@ public class JDBC_Ex2 {
         Connection conn;
         Statement stmt = null;
         try {
-            Class.forName("com.mysql.jdbc.Driver");
+            Class.forName("com.mysql.cj.jdbc.Driver");
             conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/sampledb", "root","1234");
             System.out.println("DB 연결 완료");
             stmt = conn.createStatement();
