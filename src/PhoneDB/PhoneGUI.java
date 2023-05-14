@@ -11,14 +11,14 @@ import javax.swing.*;
 public class PhoneGUI extends JFrame {
     JLabel la = new JLabel("결과창");
     PhoneDBO pdb = new PhoneDBO();
-    JTextField middleID = new JTextField(15);
+    JTextField phoneID = new JTextField(15);
     JTextArea tf = new JTextArea();
-    JTextField middleP = new JTextField(15);
-    JButton slist = new JButton("리스트");
-    JButton sadd = new JButton("추가");
-    JButton supdate = new JButton("수정");
-    JButton sdelete = new JButton("삭제");
-    JButton send = new JButton("종료");
+    JTextField phoneNum = new JTextField(15);
+    JButton pList = new JButton("리스트");
+    JButton pAdd = new JButton("추가");
+    JButton pUpdate = new JButton("수정");
+    JButton pDelete = new JButton("삭제");
+    JButton pEnd = new JButton("종료");
     JPanel cpane = new JPanel();
     JPanel cpane2 = new JPanel();
 
@@ -33,22 +33,22 @@ public class PhoneGUI extends JFrame {
         cpane.setLayout(new GridLayout(2, 2));
 
         cpane.add(new JLabel("이 름"));
-        cpane.add(middleID);
+        cpane.add(phoneID);
         cpane.add(new JLabel("전화번호"));
-        cpane.add(middleP);
+        cpane.add(phoneNum);
 
         BtnAction bAction = new BtnAction();
-        slist.addActionListener(bAction);
-        sadd.addActionListener(bAction);
-        supdate.addActionListener(bAction);
-        sdelete.addActionListener(bAction);
-        send.addActionListener(bAction);
+        pList.addActionListener(bAction);
+        pAdd.addActionListener(bAction);
+        pUpdate.addActionListener(bAction);
+        pDelete.addActionListener(bAction);
+        pEnd.addActionListener(bAction);
 
-        cpane2.add(slist);
-        cpane2.add(sadd);
-        cpane2.add(supdate);
-        cpane2.add(sdelete);
-        cpane2.add(send);
+        cpane2.add(pList);
+        cpane2.add(pAdd);
+        cpane2.add(pUpdate);
+        cpane2.add(pDelete);
+        cpane2.add(pEnd);
 
         add(la, BorderLayout.NORTH);
         add(cpane, BorderLayout.CENTER);
@@ -67,8 +67,8 @@ public class PhoneGUI extends JFrame {
                 setVisible(false);
             }
             if (b.getText().equals("추가")) {
-                String name = middleID.getText();
-                String phone = middleP.getText();
+                String name = phoneID.getText();
+                String phone = phoneNum.getText();
                 PhoneSet ephone = new PhoneSet(name, phone);
                 boolean success = pdb.insertPhone(ephone);
                 if (success)
@@ -77,7 +77,7 @@ public class PhoneGUI extends JFrame {
                     la.setText("insert 실패");
             }
             if (b.getText().equals("삭제")) {
-                String name = middleID.getText();
+                String name = phoneID.getText();
                 PhoneSet ephone = new PhoneSet();
                 ephone.setName(name);
                 boolean success = pdb.deletePhone(ephone);
@@ -87,8 +87,8 @@ public class PhoneGUI extends JFrame {
                     la.setText("delete 실패");
             }
             if (b.getText().equals("수정")) {
-                String name = middleID.getText(); // 이름 받기
-                String phone = middleP.getText(); // 전화번호 받기
+                String name = phoneID.getText(); // 이름 받기
+                String phone = phoneNum.getText(); // 전화번호 받기
                 PhoneSet ephone = new PhoneSet(name, phone);
                 boolean success = pdb.updatePhone(ephone);
                 if (success)

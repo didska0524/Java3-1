@@ -7,9 +7,9 @@ import java.util.ArrayList;
 import javax.swing.*;
 public class PhoneSetList extends JFrame {
     PhoneDBO pdb = new PhoneDBO();
-    JTextArea ta = new JTextArea(20,20);
-    JPanel jp = new JPanel();
-    JButton b = new JButton("확인");
+    JTextArea jTextArea = new JTextArea(20,20);
+    JPanel jPanel = new JPanel();
+    JButton jButton = new JButton("확인");
     public PhoneSetList(){
         setTitle("리스트");
         setSize(300, 300);
@@ -17,20 +17,20 @@ public class PhoneSetList extends JFrame {
         setLocationRelativeTo(null);
 //        ta.setSize(100,100);
         ArrayList<PhoneSet> list = pdb.phoneList();
-        jp.setLayout(new FlowLayout());
-        jp.add(b); // 버튼 추가
+        jPanel.setLayout(new FlowLayout());
+        jPanel.add(jButton); // 버튼 추가
         PhoneSet pm;
         for(int i=0;i<list.size();i++){
             pm = list.get(i);
-            ta.append(pm.getName()+"  "+pm.getPhone()+"\n");
+            jTextArea.append(pm.getName()+"  "+pm.getPhone()+"\n");
 
         }
 
-        jp.add(ta);
+        jPanel.add(jTextArea);
 
 
-        add(jp);
-        b.addActionListener(new ActionListener() {
+        add(jPanel);
+        jButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 JButton btn = (JButton)e.getSource();
